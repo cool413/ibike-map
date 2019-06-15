@@ -2,5 +2,20 @@
 <div style="text-align:center">
   <h1>Welcome to {{ title }}!</h1>
 </div>
-<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoomValue"></agm-map>
+<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoomValue">
+  <agm-marker
+    [latitude]="lat"
+    [longitude]="lng"
+    [iconUrl]="iconUrl"
+    (markerClick)="markerClick()"
+  ></agm-marker>
+  <agm-info-window
+    [latitude]="lat + 0.0005"
+    [longitude]="lng"
+    [isOpen]="isOpen"
+  >
+    <h5>文山十街</h5>
+    <p>YOYOYO.</p>
+  </agm-info-window>
+</agm-map>
 <router-outlet></router-outlet>
