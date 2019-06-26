@@ -14,7 +14,21 @@ export class AppComponent {
   iconUrl: string = 'http://i.imgur.com/0TctIfY.png';
   isOpen: boolean = false;
 
-  ngOnInit(): void {}
+  constructor(private ibikeService: IbikeService) {}
+
+  ngOnInit(): void {
+    this.ibikeService.getBikeStationInfo().subscribe(
+      data => {
+        console.log('GET call successful value returned ', data);
+      },
+      error => {
+        console.log('GET call in error', error);
+      },
+      () => {
+        console.log('The GET observable is now completed.');
+      }
+    );
+  }
 
   public markerClick(e) {
     this.isOpen = true;

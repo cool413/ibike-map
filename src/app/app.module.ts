@@ -12,7 +12,7 @@ import { AgmCoreModule } from '@agm/core';
     AppRoutingModule,
     HttpClientModule,
     AgmCoreModule.forRoot({
-      apiKey: 'KEY',
+      apiKey: '',
       language: 'zh-TW'
     })
   ],
