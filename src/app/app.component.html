@@ -2,20 +2,25 @@
 <div style="text-align:center">
   <h1>Welcome to {{ title }}!</h1>
 </div>
+
 <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoomValue">
   <agm-marker
-    [latitude]="lat"
-    [longitude]="lng"
+    *ngFor="let item of stationdata; let i = index"
+    [latitude]="item.value.lat"
+    [longitude]="item.value.lng"
     [iconUrl]="iconUrl"
-    (markerClick)="markerClick()"
-  ></agm-marker>
-  <agm-info-window
-    [latitude]="lat + 0.0005"
-    [longitude]="lng"
-    [isOpen]="isOpen"
   >
-    <h5>文山十街</h5>
-    <p>YOYOYO.</p>
-  </agm-info-window>
+    <agm-snazzy-info-window [maxWidth]="300" [closeWhenOthersOpen]="true">
+      <ng-template>
+        <div style="word-break: break-all;white-space:pre-line;">
+          <font color="#FF0000"></font>
+          {{ item.value.sna }}<br />
+          地址: {{ item.value.ar }}<br />
+          可借: {{ item.value.sbi }}<br />
+          可停: {{ item.value.bemp }}<br />
+        </div>
+      </ng-template>
+    </agm-snazzy-info-window>
+  </agm-marker>
 </agm-map>
 <router-outlet></router-outlet>
