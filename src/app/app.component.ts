@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IbikeService } from 'src/app/ibike.service';
-
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,12 +8,12 @@ import { IbikeService } from 'src/app/ibike.service';
 })
 export class AppComponent {
   title = 'ibike-map';
-  lat: number = 24.178695;
-  lng: number = 120.64501;
-  zoomValue: number = 15;
-  iconUrl: string = 'https://i.youbike.com.tw/images/map/icon_nomo.png';
+  lat = 24.178695;
+  lng = 120.64501;
+  zoomValue = 15;
+  iconUrl = 'https://i.youbike.com.tw/images/map/icon_nomo.png';
 
-  constructor(private ibikeService: IbikeService) {}
+  constructor(private ibikeService: IbikeService, private datePipe: DatePipe) {}
   stationdata = [];
 
   ngOnInit(): void {
@@ -33,5 +33,28 @@ export class AppComponent {
         console.log('The GET observable is now completed.');
       }
     );
+  }
+
+  convertToDate(str, opt) {
+    const DateSeparator = '/';
+
+    // Date
+    str.replace(/[\/:]/g, '');
+    let DateStr =
+      str.slice(0, 4) +
+      DateSeparator +
+      str.slice(4, 6) +
+      DateSeparator +
+      str.slice(6, 8);
+
+    // Time
+    if (str.length >= 12) {
+      DateStr += ' ' + str.slice(8, 10) + ':' + str.slice(10, 12);
+      if (str.length >= 14) {
+        DateStr += ':' + str.slice(12, 14);
+      }
+    }
+
+    return this.datePipe.transform(DateStr, opt);
   }
 }

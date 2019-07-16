@@ -10,14 +10,15 @@
     [longitude]="item.value.lng"
     [iconUrl]="iconUrl"
   >
-    <agm-snazzy-info-window [maxWidth]="300" [closeWhenOthersOpen]="true">
+    <agm-snazzy-info-window [maxWidth]="500" [closeWhenOthersOpen]="true">
       <ng-template>
         <div style="word-break: break-all;white-space:pre-line;">
-          <font color="#FF0000"></font>
-          {{ item.value.sna }}<br />
+          <font color="#FF0000"> {{ item.value.sna }}</font
+          ><br />
           地址: {{ item.value.ar }}<br />
           可借: {{ item.value.sbi }}<br />
           可停: {{ item.value.bemp }}<br />
+          時間: {{ convertToDate(item.value.mday, 'yyyy/MM/dd HH:mm:ss') }}
         </div>
       </ng-template>
     </agm-snazzy-info-window>
