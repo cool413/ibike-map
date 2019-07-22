@@ -35,6 +35,17 @@ export class AppComponent {
     );
   }
 
+  getIcon(item) {
+    if (item.value.sbi * 1 === 0 && item.value.bemp * 1 === 0) {
+      return 'assets/icon_service.png';
+    } else if (item.value.sbi * 1 === 0) {
+      return 'assets/icon_nobike.png';
+    } else if (item.value.bemp * 1 === 0) {
+      return 'assets/icon_full.png';
+    }
+
+    return 'assets/icon_nomo.png';
+  }
   convertToDate(str, opt) {
     const DateSeparator = '/';
 
